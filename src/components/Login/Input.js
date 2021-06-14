@@ -13,6 +13,7 @@ const Input = ({ type, label, state }) => {
 					autoComplete='false'
 					onChange={(e) => setValue(e.target.value)}
 					required
+					autocomplete='off'
 				/>
 				<Lable>
 					<Span>{label}</Span>
