@@ -1,14 +1,26 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { MdSettings, MdAdd } from 'react-icons/md';
+import { MdSettings, MdNotificationsNone } from 'react-icons/md';
+import { BsDot } from 'react-icons/bs';
 import DropDown from './DropDown';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../../Context/AuthProvider';
 import NavBarIcon from '../ReUseable/NavBarIcon';
 import DarkMoodToggle from '../ReUseable/DarkMoodToggle';
-const Header = ({dark,setdark}) => {
+import NotificationsDrop from './NotificationsDrop';
+import { useTodo } from '../../Context/TodoProvider';
+const Header = ({ dark, setdark }) => {
 	const { Auth } = useAuth();
+	const { notification, displayNotification } = useTodo();
 	const [drop, setDrop] = useState(false);
+	const [notifications, setNotifications] = useState(false);
+	const [redDot, setRedDot] = useState(true);
+	const bell = () => {
+		displayNotification();
+		setNotifications((notifications) => !notifications);
+		setDrop(false);
+		setRedDot(false);
+	};
 	return (
 		<>
 			<NavContainer>
@@ -22,11 +34,19 @@ const Header = ({dark,setdark}) => {
 				</LogoNameContainer>
 				{Auth && (
 					<IconsGroup>
-						<Add size={25} />
-						<Setting size={23} onClick={() => setDrop((drop) => !drop)} />
+						{notification && redDot && <RedDot size={55} />}
+						<Bell size={25} onClick={bell} />
+						<Setting
+							size={23}
+							onClick={() => {
+								setDrop((drop) => !drop);
+								setNotifications(false);
+							}}
+						/>
 					</IconsGroup>
 				)}
 				{Auth && drop && <DropDown state={[drop, setDrop]} />}
+				{Auth && notifications && <NotificationsDrop Data={notification} />}
 			</NavContainer>
 		</>
 	);
@@ -68,12 +88,24 @@ const Setting = styled(MdSettings)`
 		transform: rotate(55deg);
 	}
 `;
-const Add = styled(MdAdd)`
+const Bell = styled(MdNotificationsNone)`
 	color: #f6f6f6;
+	transition-duration: 0.5s;
+	&:hover {
+		transform: rotate(15deg);
+	}
 `;
 const Toggle = styled.div`
-padding: 0 10px;
+	padding: 0 10px;
 	display: flex;
 	align-items: center;
 	justify-content: center;
+`;
+const RedDot = styled(BsDot)`
+	color: #ff5042;
+	position: absolute;
+	pointer-events: none;
+	top: 0;
+	right: 55px;
+	
 `;

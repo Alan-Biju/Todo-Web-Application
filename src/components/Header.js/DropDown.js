@@ -6,31 +6,29 @@ import { RiLogoutCircleRLine } from 'react-icons/ri';
 import { NavLink } from 'react-router-dom';
 
 const DropDown = ({ state }) => {
-    // eslint-disable-next-line no-unused-vars
-    const [drop,setDrop] = state;
+	// eslint-disable-next-line no-unused-vars
+	const [drop, setDrop] = state;
 	const history = useHistory();
-	const { Auth, logOut} = useAuth();
+	const { Auth, logOut } = useAuth();
 	const signOut = async () => {
 		try {
-            await logOut();
-            setDrop(false)
+			await logOut();
+			setDrop(false);
 			history.push('/login');
 		} catch (error) {
 			console.log(error);
 		}
-    };
-    const activeStyle = {
-			textDecoration: 'line-through',
-			color: '#b1a3a3',
-		};
+	};
+	const activeStyle = {
+		textDecoration: 'line-through',
+		color: '#b1a3a3',
+	};
 	return (
 		<>
 			<DropDownContainer onClick={() => setDrop(false)}>
 				<ListItem>{Auth && Auth.displayName}</ListItem>
 				<ListItem>
-					<Links
-						to='/Profile'
-						activeStyle={activeStyle}>
+					<Links to='/Profile' activeStyle={activeStyle}>
 						Profile
 					</Links>
 				</ListItem>
@@ -56,12 +54,12 @@ from{
 }
 to{
     opacity: 1;
-    height:220px ;
+    height:220px;
     
 }
 `;
 
-const DropDownContainer = styled.div`
+export const DropDownContainer = styled.div`
 	position: absolute;
 	top: 60px;
 	right: 5px;
@@ -137,6 +135,5 @@ const Links = styled(NavLink)`
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-    color: inherit;
+	color: inherit;
 `;
-	

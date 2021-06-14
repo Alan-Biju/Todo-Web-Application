@@ -12,8 +12,8 @@ const TodoProvider = ({ children }) => {
 	const [category, setCategory] = useState([]);
 	const [titleCategory, setTitleCategory] = useState(''); ///---------category title--------
 	const [switchTodo, setSwitchTodo] = useState(''); /////--------------------switch-------
-	const [todayItem, setTodayItem] = useState([]);
-
+	const [todayItem, setTodayItem] = useState([]);//---------today list----------------
+	const [notification, setNotification] = useState([]);
 	const { Auth } = useAuth();
 	// ---------------------------------------------All Todo value-------------------
 
@@ -52,6 +52,7 @@ const TodoProvider = ({ children }) => {
 			data();
 			List();
 			today();
+			displayNotification();
 		}
 		return () => {
 			data();
@@ -59,6 +60,7 @@ const TodoProvider = ({ children }) => {
 			List();
 			setTodoData([]);
 			today();
+			displayNotification();
 		};
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [Auth]);
@@ -159,6 +161,22 @@ const TodoProvider = ({ children }) => {
 			console.log(e + 'error from cf');
 		}
 	};
+	////--------------------------------Notifications-----------------------------
+	const displayNotification = () => {
+		try {
+			console.log('dfdfdfdfd');
+			db.collection('Notifications').get().then((res) => {
+				setNotification('');
+				res.forEach((data) => {
+					setNotification((prev) => [...prev, data.data()]);
+				});
+			});
+		} catch(e) {
+			console.log('NO Notification sorry'+e);
+		}
+	};
+
+
 	///----------------------------------today fetch-----------------------------
 
 	const today = () => {
@@ -195,6 +213,8 @@ const TodoProvider = ({ children }) => {
 		setSwitchTodo,
 		todayItem,
 		today,
+		displayNotification,
+		notification,
 	};
 	return (
 		<>
