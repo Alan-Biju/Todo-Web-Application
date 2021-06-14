@@ -3,19 +3,19 @@ import styled, { keyframes } from 'styled-components';
 import { DropDownContainer } from './DropDown';
 import { MdGrain } from 'react-icons/md';
 const NotificationsDrop = ({ Data }) => {
-
 	return (
 		<NotificationsContainer>
-            { Data && Data.map((data, idx) => {
-                return (
-									<MessageBox key={idx}>
-										<p>
-											<MdGrain /> {data.Message}
-										</p>
-										<span>{data.Date}</span>
-									</MessageBox>
-								);
-            }) }
+			{Data &&
+				Data.map((data, idx) => {
+					return (
+						<MessageBox key={idx}>
+							<p>
+								<MdGrain /> {data.Message}
+							</p>
+							<span>{data.Date}</span>
+						</MessageBox>
+					);
+				})}
 		</NotificationsContainer>
 	);
 };
@@ -24,11 +24,10 @@ export default NotificationsDrop;
 const MoveDown = keyframes`
 from{
     opacity: 0;
-   height:0;
 }
 to{
     opacity: 1;
-    height:fit-content;
+   
     
 }
 `;
