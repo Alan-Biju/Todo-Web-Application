@@ -68,9 +68,12 @@ const InputBoxs = styled(InputBox)`
 const Buttons = styled(Button)``;
 const CreateText = styled.h2`
 	width: 100%;
-	font-size: 0.7rem;
-	color: #77c7c7;
+	font-size: 0.65rem;
+	transition: color 0.9s ease;
+	color: ${(prop) => prop.theme.MainFontColor};
 	text-align: center;
 	letter-spacing: 1px;
-	font-family: 'Roboto', sans-serif;
+	font-family: 'Raleway', sans-serif;
+	font-weight: bold;
+	text-transform: uppercase;
 `;

@@ -26,7 +26,7 @@ const Login = () => {
 		<>
 			<Form onSubmit={handleSubmit}>
 				<h1>Login</h1>
-				<Message>{message ? message:'' }</Message>
+				<Message>{message ? message : ''}</Message>
 				<InputBox>
 					<Input type='text' label='Email' state={[email, setEmail]} />
 					<Input
@@ -52,6 +52,10 @@ const Login = () => {
 export default Login;
 
 export const Form = styled.form`
+	background-image: url('/ri.svg');
+	background-size: 85% 150%;
+	background-repeat: no-repeat;
+	background-position: 30px 20px;
 	transition: background-color 0.8s ease;
 	background-color: ${(prop) => prop.theme.MainBackground};
 	position: absolute;
@@ -72,7 +76,7 @@ export const Form = styled.form`
 		font-family: 'Raleway', sans-serif;
 		letter-spacing: 1px;
 		font-weight: 600;
-		transition:color 0.9s ease;
+		transition: color 0.9s ease;
 		color: ${(prop) => prop.theme.MainFontColor};
 		@media (max-width: 260px) {
 			font-size: 1.1rem;
@@ -82,9 +86,10 @@ export const Form = styled.form`
 		font-size: 0.6rem;
 		width: 100%;
 		text-align: right;
-		font-family: 'Roboto', sans-serif;
-		color: #88a598;
-		font-weight: 500;
+		font-family: 'Raleway', sans-serif;
+		transition: color 0.9s ease;
+		color: ${(prop) => prop.theme.MainFontColor};
+		font-weight: 600;
 		letter-spacing: 1px;
 	}
 	@media (max-width: 400px) {
@@ -132,11 +137,14 @@ export const Button = styled.button`
 `;
 export const CreateText = styled.h2`
 	width: 100%;
-	font-size: 0.7rem;
-	color: #77c7c7;
+	font-size: 0.65rem;
+	transition: color 0.9s ease;
+	color: ${(prop) => prop.theme.MainFontColor};
 	text-align: center;
 	letter-spacing: 1px;
-	font-family: 'Roboto', sans-serif;
+	font-family: 'Raleway', sans-serif;
+	font-weight:bold;
+	text-transform: uppercase;
 `;
 export const Message = styled.h6`
 	text-align: center;
