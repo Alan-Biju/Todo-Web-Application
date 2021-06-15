@@ -34,7 +34,9 @@ const Header = ({ dark, setdark }) => {
 				</LogoNameContainer>
 				{Auth && (
 					<IconsGroup>
-						{notification && redDot && <RedDot size={55} />}
+						{notification && notification.length > 0 && redDot && (
+							<RedDot size={55} />
+						)}
 						<Bell size={25} onClick={bell} />
 						<Setting
 							size={23}

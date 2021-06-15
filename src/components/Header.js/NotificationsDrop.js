@@ -2,20 +2,29 @@ import React from 'react';
 import styled, { keyframes } from 'styled-components';
 import { DropDownContainer } from './DropDown';
 import { MdGrain } from 'react-icons/md';
+import moment from 'moment';
 const NotificationsDrop = ({ Data }) => {
 	return (
 		<NotificationsContainer>
-			{Data &&
+			{Data && Data.length > 0 ? (
 				Data.map((data, idx) => {
 					return (
 						<MessageBox key={idx}>
 							<p>
-								<MdGrain /> {data.Message}
+								<MdGrain /> {data.message}
 							</p>
-							<span>{data.Date}</span>
+							<span>{data.date}</span>
 						</MessageBox>
 					);
-				})}
+				})
+			) : (
+				<MessageBox>
+					<p>
+						<MdGrain /> no Notifications
+					</p>
+					<span>{moment().format('MMM Do YY')}</span>
+				</MessageBox>
+			)}
 		</NotificationsContainer>
 	);
 };

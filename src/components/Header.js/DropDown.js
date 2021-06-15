@@ -50,11 +50,11 @@ export default DropDown;
 const MoveDown = keyframes`
 from{
     opacity: 0;
-   height:0;
+
 }
 to{
     opacity: 1;
-    height:220px;
+  
     
 }
 `;

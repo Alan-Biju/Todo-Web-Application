@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { MdDelete } from 'react-icons/md';
+import { MdDelete, MdRadioButtonChecked,MdRadioButtonUnchecked } from 'react-icons/md';
 import { BiTask } from 'react-icons/bi';
 import { useTodo } from '../../Context/TodoProvider';
 const TodoList = ({ data, title }) => {
@@ -17,7 +17,17 @@ const TodoList = ({ data, title }) => {
 							return (
 								<TodoListItems key={idx} state={data.isDone}>
 									<TodoItem state={data.isDone} color={data.color}>
-										<div></div>
+										{data.isDone ? (
+											<MdRadioButtonChecked
+												size={25}
+												style={{ margin: '0 10px', color: `${data.color}` }}
+											/>
+										) : (
+											<MdRadioButtonUnchecked
+												size={25}
+												style={{ margin: '0 10px', color: `${data.color}` }}
+											/>
+										)}
 										<p>{data.message}</p>
 									</TodoItem>
 									<TodoIcons>
@@ -97,14 +107,6 @@ const TodoItem = styled.div`
 	display: flex;
 	align-items: center;
 	justify-content: flex-start;
-	div {
-		width: 20px;
-		height: 20px;
-		border: 2px solid ${(prop) => (prop.color ? prop.color : '#6d6c6cce')};
-		border-radius: 50%;
-		margin: 0 10px;
-		background-color: ${(prop) => (prop.state ? prop.color : '')};
-	}
 	P {
 		font-family: 'Roboto', sans-serif;
 		font-size: 0.9rem;

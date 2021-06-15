@@ -15,8 +15,8 @@ const TodoAdd = () => {
 	const [date, setDate] = useState(moment().format('YYYY-MM-DD'));
 	const submitHandler = async () => {
 		const Add = TodoAdd.current.value;
-		if (Add) {
-			const Imp = { id: 'Important', color: '#ff5042' };
+		const Imp = { id: 'Important', color: '#ff5042' };
+		if (Add && (Imp || item)) {
 			try {
 				toggle ? await AddTodo(Imp, Add, date) : await AddTodo(item, Add, date);
 				TodoAdd.current.value = '';
@@ -136,7 +136,7 @@ const TodoAddContanier = styled.div`
 	background-color: ${(prop) => prop.theme.secondaryBackground};
 	border-radius: 5px;
 	padding: 10px;
-	height: 220px;
+	height: fit-content;
 	transition: all 0.3s ease;
 	@media (max-width: 400px) {
 		padding: 5px;

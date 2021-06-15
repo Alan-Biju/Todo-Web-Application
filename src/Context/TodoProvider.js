@@ -12,7 +12,7 @@ const TodoProvider = ({ children }) => {
 	const [category, setCategory] = useState([]);
 	const [titleCategory, setTitleCategory] = useState(''); ///---------category title--------
 	const [switchTodo, setSwitchTodo] = useState(''); /////--------------------switch-------
-	const [todayItem, setTodayItem] = useState([]);//---------today list----------------
+	const [todayItem, setTodayItem] = useState([]); //---------today list----------------
 	const [notification, setNotification] = useState([]);
 	const { Auth } = useAuth();
 	// ---------------------------------------------All Todo value-------------------
@@ -20,12 +20,14 @@ const TodoProvider = ({ children }) => {
 	const data = () => {
 		try {
 			db.collectionGroup(`todo-${Auth.uid}`).onSnapshot((res) => {
-				setTodoData([]);
+				const dataArr = [];
 				res.forEach((data) => {
-					setTodoData((prev) => {
-						setTodoData([...prev, { ...data.data(), id: data.id }]);
-					});
+					dataArr.push({ ...data.data(), id: data.id });
 				});
+				dataArr.sort( (a, b)=> {
+					return new Date(b.date) - new Date(a.date);
+				});
+				setTodoData(dataArr);
 			});
 		} catch (error) {
 			console.log('from todoAuth 🐱‍🐉' + error);
@@ -164,18 +166,22 @@ const TodoProvider = ({ children }) => {
 	////--------------------------------Notifications-----------------------------
 	const displayNotification = () => {
 		try {
-			console.log('dfdfdfdfd');
-			db.collection('Notifications').get().then((res) => {
-				setNotification('');
-				res.forEach((data) => {
-					setNotification((prev) => [...prev, data.data()]);
+			db.collectionGroup(`todo-${Auth.uid}`)
+				.limit(2)
+				.onSnapshot((res) => {
+					setNotification([]);
+					res.forEach((data) => {
+						if (data.data().date === moment().format('YYYY-MM-DD')) {
+							setNotification((prev) => {
+								setNotification([...prev, { ...data.data(), id: data.id }]);
+							});
+						}
+					});
 				});
-			});
-		} catch(e) {
-			console.log('NO Notification sorry'+e);
+		} catch (e) {
+			console.log('NO Notification sorry' + e);
 		}
 	};
-
 
 	///----------------------------------today fetch-----------------------------
 
