@@ -21,6 +21,7 @@ const Header = ({ dark, setdark }) => {
 		setDrop(false);
 		setRedDot(false);
 	};
+	console.log(notification.length);
 	return (
 		<>
 			<NavContainer>
@@ -34,9 +35,7 @@ const Header = ({ dark, setdark }) => {
 				</LogoNameContainer>
 				{Auth && (
 					<IconsGroup>
-						{notification && notification.length > 0 && redDot && (
-							<RedDot size={55} />
-						)}
+						{notification && notification.length > 0  && redDot && <RedDot size={55} />}
 						<Bell size={25} onClick={bell} />
 						<Setting
 							size={23}

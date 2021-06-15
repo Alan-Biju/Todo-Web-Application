@@ -24,7 +24,7 @@ const TodoProvider = ({ children }) => {
 				res.forEach((data) => {
 					dataArr.push({ ...data.data(), id: data.id });
 				});
-				dataArr.sort( (a, b)=> {
+				dataArr.sort((a, b) => {
 					return new Date(b.date) - new Date(a.date);
 				});
 				setTodoData(dataArr);
@@ -148,15 +148,15 @@ const TodoProvider = ({ children }) => {
 	const categoryDisplay = (category) => {
 		try {
 			setTitleCategory(category);
-			db.collection(`${Auth.uid}/${category}/todo-${Auth.uid}`).onSnapshot(
+			db.collection(`${ Auth.uid }/${ category }/todo-${ Auth.uid }`).onSnapshot(
 				(res) => {
-					setCategorytodoData([]);
+					const Arr = [];
 					res.forEach((data) => {
-						setCategorytodoData((prev) => {
-							setCategorytodoData([...prev, { ...data.data(), id: data.id }]);
-						});
+						Arr.push({ ...data.data(), id: data.id })
+						
 						setTitleCategory(category);
 					});
+						setCategorytodoData(Arr);
 				},
 			);
 		} catch (e) {
@@ -166,23 +166,22 @@ const TodoProvider = ({ children }) => {
 	////--------------------------------Notifications-----------------------------
 	const displayNotification = () => {
 		try {
-			db.collectionGroup(`todo-${Auth.uid}`)
-				.limit(2)
-				.onSnapshot((res) => {
-					setNotification([]);
-					res.forEach((data) => {
-						if (data.data().date === moment().format('YYYY-MM-DD')) {
-							setNotification((prev) => {
-								setNotification([...prev, { ...data.data(), id: data.id }]);
-							});
+			db.collectionGroup(`todo-${Auth.uid}`).onSnapshot((res) => {
+				setNotification([]);
+				const Arr = [];
+				res.forEach((data) => {
+					if (data.data().date === moment().format('YYYY-MM-DD')) {
+						if (Arr.length < 2 && data.data().isDone===false) {
+							Arr.push({ ...data.data(), id: data.id });
 						}
-					});
+					}
 				});
+				setNotification(Arr);
+			});
 		} catch (e) {
 			console.log('NO Notification sorry' + e);
 		}
 	};
-
 	///----------------------------------today fetch-----------------------------
 
 	const today = () => {
