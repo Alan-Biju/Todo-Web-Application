@@ -22,7 +22,7 @@ const ResetPassword = () => {
 	};
 	return (
 		<>
-			<Form onSubmit={handleSubmit}>
+			<Form onSubmit={handleSubmit} autocomplete='off'>
 				<h1>Reset password</h1>
 				<Message>{message ? message : <br />}</Message>
 				<InputBox>

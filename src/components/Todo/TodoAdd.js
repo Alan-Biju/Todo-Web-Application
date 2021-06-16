@@ -329,8 +329,8 @@ const TodoAddDropContainer = styled.div`
 		width: 20px;
 		height: 20px;
 		position: absolute;
-		top: -8px;
-		right: 3px;
+		top: -7px;
+		right: 4px;
 		transform: rotate(45deg);
 		background-color: inherit;
 	}

@@ -24,7 +24,7 @@ const Login = () => {
 	};
 	return (
 		<>
-			<Form onSubmit={handleSubmit}>
+			<Form onSubmit={handleSubmit} autocomplete='off'>
 				<h1>Login</h1>
 				<Message>{message ? message : ''}</Message>
 				<InputBox>

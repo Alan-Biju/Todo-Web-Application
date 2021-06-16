@@ -29,7 +29,7 @@ const Register = () => {
 	};
 	return (
 		<>
-			<Forms onSubmit={handleSubmit}>
+			<Forms onSubmit={handleSubmit} autocomplete='off'>
 				<h1> Sign Up</h1>
 				<Message>{message ? message : <br />}</Message>
 
