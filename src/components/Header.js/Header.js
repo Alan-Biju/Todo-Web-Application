@@ -21,7 +21,6 @@ const Header = ({ dark, setdark }) => {
 		setDrop(false);
 		setRedDot(false);
 	};
-	console.log(notification.length);
 	return (
 		<>
 			<NavContainer>
