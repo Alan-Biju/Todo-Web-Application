@@ -1,3 +1,21 @@
+# Live Link
+https://todo-taskapp.netlify.app/
+
+# User-story
+
+React JS JavaScript HTML 5 FireBase git styled-components(CSS)
+This application was built using create-react-app as a base, and the technologies used were React (Custom Hooks, Context), Firebase & React Testing Library.
+I've also included styled-components in the application it enables dark mode! its completely stand alone Progressive Web Apps
+
+
+# ScreenShots
+![todo-taskapp netlify app_ (1)](https://user-images.githubusercontent.com/67945306/129682549-7dc89d47-c996-4059-91de-2cb4219f1bc5.png)
+![todo-taskapp netlify app_](https://user-images.githubusercontent.com/67945306/129682555-59ccb28f-1f07-4994-97a7-6eb170dd8ef0.png)
+![todo-taskapp netlify app_(iPhone 6_7_8 Plus) (1)](https://user-images.githubusercontent.com/67945306/129682537-71f76aa7-b64b-48d6-b99d-413e517330b9.png)
+![todo-taskapp netlify app_(iPhone 6_7_8 Plus)](https://user-images.githubusercontent.com/67945306/129682542-ab797aa2-c45f-42b4-8440-63b9feb2bb21.png)
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
